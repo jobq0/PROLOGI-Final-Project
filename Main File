@@ -1,0 +1,58 @@
+
+users = {"aaron": "pop"}  # store data
+#  {keys:values]
+
+
+def register_user():
+    username = input("Enter a username:")
+    if username in users:  # Check if name exist in dictionary
+        print("Name already exist")
+        print("Please type another name")
+        register_user()
+    else:
+        password = input("Enter a newly password:")
+        ver_pass = input("Type your Password to verify:")
+        while ver_pass != password:  # iterates if password isn't the same
+            ver_pass = input("Error! Type your Password again to verify:")
+        print(f"User '{username}' registered successfully!")
+        users[username] = password  # Add into Dictionaries
+        main_page()
+
+
+def login(username_login, password_login):
+    if username_login and password_login == users[username_login]:
+        print(f"Welcome, {username_login}! You are now logged in.")
+        main_page()
+    else:
+        print("Login failed. Incorrect username or password.")
+        print("Please try again")
+        username_login = input("Username:")
+        password_login = input("Password:")
+        login(username_login, password_login)
+def main_page():
+    print("""=====Main Page=====
+    1] Select Course
+    2] Assessment
+    3] Change password""")
+
+
+# Main control
+print("Hello, Welcome to Enrollment System. Please proceed")
+print("""1.Login 
+2.Register""")
+optionValue = input("Please enter the number choice: ")
+while optionValue == "1" or "2":
+    if optionValue == "1":
+        login_name = input("Username:")
+        login_password = input("Password:")
+        login(login_name, login_password)
+        break
+    elif optionValue == "2":
+        register_user()
+        break
+    else:
+        optionValue = input("""===Please choose the given option===
+    1] Login
+    2] Register
+    :    """)
+

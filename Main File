@@ -1,39 +1,51 @@
-
 users = {"aaron": "pop"}  # store data
 #  {keys:values]
+temp_name = []  # temporary stores the new register name
 
 
-def register_user():
-    username = input("Enter a username:")
-    if username in users:  # Check if name exist in dictionary
-        print("Name already exist")
-        print("Please type another name")
-        register_user()
+def name_check(newname):
+    if newname in users:  # Check if name exist in dictionary
+        print("Name exist!")
+        username2 = input("Please try another name:")
+        name_check(username2)
     else:
-        password = input("Enter a newly password:")
-        ver_pass = input("Type your Password to verify:")
-        while ver_pass != password:  # iterates if password isn't the same
-            ver_pass = input("Error! Type your Password again to verify:")
-        print(f"User '{username}' registered successfully!")
-        users[username] = password  # Add into Dictionaries
-        main_page()
+        temp_name.append(newname)
+
+
+def password_check(newpassword, new_verpass):
+    if new_verpass != newpassword:
+        ver_pass2 = input("Error! Password not matched. Enter Verification password:")
+        password_check(newpassword, ver_pass2)
+    else:
+        print("Password Accepted")
 
 
 def login(username_login, password_login):
-    if username_login and password_login == users[username_login]:
-        print(f"Welcome, {username_login}! You are now logged in.")
-        main_page()
+    get_userpass = users.get(username_login)
+    if username_login in users:
+        if password_login == get_userpass:
+            print(f"Welcome, {username_login}! You are now logged in.")
+            main_page()
+        else:
+            print("Login failed. Wrong username or password.")
+            print("Please try again 2")
+            username_login = input("Username:")
+            password_login = input("Password:")
+            login(username_login, password_login)
     else:
-        print("Login failed. Incorrect username or password.")
-        print("Please try again")
+        print("Login failed. Wrong username or password.")
+        print("Please try again 1")
         username_login = input("Username:")
         password_login = input("Password:")
         login(username_login, password_login)
+
+
 def main_page():
     print("""=====Main Page=====
-    1] Select Course
-    2] Assessment
-    3] Change password""")
+    1] Select Courses
+    2] My Calendar
+    4] Change password
+    3] Tuition Fee""")
 
 
 # Main control
@@ -48,11 +60,17 @@ while optionValue == "1" or "2":
         login(login_name, login_password)
         break
     elif optionValue == "2":
-        register_user()
-        break
+        username = input("Enter a username:")
+        password = input("Please enter a newly password:")
+        ver_pass = input("Please verify your Password:")
+        name_check(username)
+        password_check(password, ver_pass)
+        get_name = temp_name.pop()  # Gets the temporary store data name
+        users.update({get_name: password})  # Adds another account
+        print(f"Registered {get_name} Complete!")
+        main_page()
     else:
         optionValue = input("""===Please choose the given option===
     1] Login
-    2] Register
-    :    """)
-
+    2] Register:
+    """)

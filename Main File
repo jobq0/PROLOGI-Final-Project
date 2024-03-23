@@ -4,9 +4,32 @@ user_info = [["Cpe", "COD", "Manila", "05165164"],
              ["Ece", "COD", "location", "number"],
              ["Ccs", "COD", "location", "number"]]
 
-def courses():
+# def courses():
 
-def viewcalendar():
+
+# def viewcalendar():
+
+
+def check_name(validation):
+    if validation in users:
+        return True
+    else:
+        print("Name Doesn't Exist")
+        return False
+
+
+def login(username, password):
+    get_userpass = users.get(username)
+    check_name(username)
+    if password == get_userpass:
+        print(f"Welcome, {username}! You are now logged in.")
+        main_page(username)
+    else:
+        print("Login failed. Wrong username or password.")
+        print("Please try again 2")
+        username_login = input("Username:")
+        password_login = input("Password:")
+        login(username_login, password_login)
 
 
 def getinfo(profile):
@@ -28,44 +51,20 @@ def getinfo(profile):
     else:
         return False
 
-def check_name(validation):
-    if validation in users:
-        return True
-
-    else:
-        print("Name Doesn't Exist")
-        return False
-
-
-def login(username, password):
-    get_userpass = users.get(username)
-    check_name(username)
-    if password == get_userpass:
-        print(f"Welcome, {username}! You are now logged in.")
-        main_page(username)
-    else:
-        print("Login failed. Wrong username or password.")
-        print("Please try again 2")
-        username_login = input("Username:")
-        password_login = input("Password:")
-        login(username_login, password_login)
-
-
 
 def main_page(profile):
-    option2 = input("Choose the given option:")
+    option2 = ""
     while option2 != "3":
-
-        print(f""""=====Academic Profile=====""")
+        print("""====Academic Profile====""")
         getinfo(profile)
         print("""=====Main Page=====
-    1] Select Course
-    2] My Calendar
-    3] Exit""")
+       1] Select Course
+       2] My Calendar
+       3] Exit""")
         if option2 == "1":
             courses()
         elif option2 == "2":
-            viewcalendar()
+            calendar()
         else:
             option2 = input("Choose the given option (numbers only)")
 

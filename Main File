@@ -1,76 +1,90 @@
-users = {"aaron": "pop"}  # store data
-#  {keys:values]
-temp_name = []  # temporary stores the new register name
+users = {"aaron": "pop", "teo": "123", "sammy": "pass"}
+
+user_info = [["Cpe", "COD", "Manila", "05165164"],
+             ["Ece", "COD", "location", "number"],
+             ["Ccs", "COD", "location", "number"]]
+
+def courses():
+
+def viewcalendar():
 
 
-def name_check(newname):
-    if newname in users:  # Check if name exist in dictionary
-        print("Name exist!")
-        username2 = input("Please try another name:")
-        name_check(username2)
+def getinfo(profile):
+    if profile == "aaron":
+        prof = 0
+        for i in range(4):
+            print(user_info[0][i])
+            prof += 1
+    elif profile == "teo":
+        prof2 = 0
+        for i in range(4):
+            print(user_info[1][i])
+            prof2 += 1
+    elif profile == "sammy":
+        prof3 = 0
+        for i in range(4):
+            print(user_info[2][i])
+            prof3 += 1
     else:
-        temp_name.append(newname)
+        return False
 
+def check_name(validation):
+    if validation in users:
+        return True
 
-def password_check(newpassword, new_verpass):
-    if new_verpass != newpassword:
-        ver_pass2 = input("Error! Password not matched. Enter Verification password:")
-        password_check(newpassword, ver_pass2)
     else:
-        print("Password Accepted")
+        print("Name Doesn't Exist")
+        return False
 
 
-def login(username_login, password_login):
-    get_userpass = users.get(username_login)
-    if username_login in users:
-        if password_login == get_userpass:
-            print(f"Welcome, {username_login}! You are now logged in.")
-            main_page()
-        else:
-            print("Login failed. Wrong username or password.")
-            print("Please try again 2")
-            username_login = input("Username:")
-            password_login = input("Password:")
-            login(username_login, password_login)
+def login(username, password):
+    get_userpass = users.get(username)
+    check_name(username)
+    if password == get_userpass:
+        print(f"Welcome, {username}! You are now logged in.")
+        main_page(username)
     else:
         print("Login failed. Wrong username or password.")
-        print("Please try again 1")
+        print("Please try again 2")
         username_login = input("Username:")
         password_login = input("Password:")
         login(username_login, password_login)
 
 
-def main_page():
-    print("""=====Main Page=====
-    1] Select Courses
+
+def main_page(profile):
+    option2 = input("Choose the given option:")
+    while option2 != "3":
+
+        print(f""""=====Academic Profile=====""")
+        getinfo(profile)
+        print("""=====Main Page=====
+    1] Select Course
     2] My Calendar
-    4] Change password
-    3] Tuition Fee""")
+    3] Exit""")
+        if option2 == "1":
+            courses()
+        elif option2 == "2":
+            viewcalendar()
+        else:
+            option2 = input("Choose the given option (numbers only)")
 
 
 # Main control
+
+
 print("Hello, Welcome to Enrollment System. Please proceed")
 print("""1.Login 
-2.Register""")
+2.Exit""")
 optionValue = input("Please enter the number choice: ")
-while optionValue == "1" or "2":
+while optionValue != "2":
     if optionValue == "1":
         login_name = input("Username:")
         login_password = input("Password:")
         login(login_name, login_password)
         break
-    elif optionValue == "2":
-        username = input("Enter a username:")
-        password = input("Please enter a newly password:")
-        ver_pass = input("Please verify your Password:")
-        name_check(username)
-        password_check(password, ver_pass)
-        get_name = temp_name.pop()  # Gets the temporary store data name
-        users.update({get_name: password})  # Adds another account
-        print(f"Registered {get_name} Complete!")
-        main_page()
     else:
         optionValue = input("""===Please choose the given option===
     1] Login
-    2] Register:
+    2] Exit:
     """)

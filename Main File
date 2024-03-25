@@ -1,10 +1,42 @@
-users = {"aaron": "pop", "teo": "123", "sammy": "pass"}
+users = {
+    "Aaron": {"Password": "pop", "Course": "CPE", "Address": "Manila", "ID Number": "05165164"},
+    "Teo": {"Password": "123", "Course": "ECE", "Address": "Pasay", "ID Number": "05165165"},
+    "Sammy": {"Password": "pass", "Course": "CCS", "Address": "Quezon City", "ID Number": "05165166"}
+    }
 
-user_info = [["Cpe", "COD", "Manila", "05165164"],
-             ["Ece", "COD", "location", "number"],
-             ["Ccs", "COD", "location", "number"]]
+course_offerings = {
+    "CALENG2": {
+                "527":{"Section": "ER1", "Days": "T/F","Time": "7:30-9:00", "Room": "AG1606","Remarks": "Hybrid", "Teacher": "Balboa, Christian Jay P."},
+                "526":{"Section": "ER2", "Days": "T/F","Time": "09:15-10:45", "Room": "AG1611","Remarks": "Hybrid", "Teacher": "Balboa, Christian Jay P."},
+                "525":{"Section": "ER3", "Days": "T/F","Time": "12:45-14:15", "Room": "AG1611","Remarks": "Hybrid", "Teacher": "Baraoidan, Wilheliza Almazar"},
+                "524":{"Section": "ER4", "Days": "T/F","Time": "14:30-16:00", "Room": "VL023","Remarks": "Hybrid", "Teacher": "Baraoidan, Wilheliza Almazar"},
+                "523":{"Section": "ER5", "Days": "M/H","Time": "7:30-9:00",  "Room": "AG702","Remarks": "Hybrid", "Teacher": "Delfin, Robert E."},
+                "522":{"Section": "ER6", "Days": "M/H","Time": "09:15-10:45",  "Room": "VL308","Remarks": "Hybrid", "Teacher": "Delfin, Robert E."},
+                "521":{"Section": "ER7", "Days": "M/H","Time": "12:45-14:15",  "Room": "SM203","Remarks": "Hybrid", "Teacher": "Dollente, Ithan Jessemar R."},
+                "6471":{"Section": "ER8", "Days": "T/F","Time": "14:30-16:00",  "Room": "AG702","Remarks": "Hybrid", "Teacher": "Bracino, Amir A."},
+                "7361":{"Section": "XXE1", "Days": "","Time": "", "Room": "","Remarks": "Special Class", "Teacher": ""},
+               }
+}
 
-# def courses():
+
+def classes(profile):
+    print("""\n=====Course Offerings=====\nCALENG2\nExit\n===================""")
+    course_option = ""
+    class_option = ""
+    num = ["1","2","3","4","5","6"]
+    sort = ["Section","Days","Time","Room","Remarks","Teacher"]
+    while course_option not in course_offerings:
+        if course_option == "7":
+            return "0"
+        course_option = input("Choose a course: ")
+    print("""\n=====Sort by=====\n[1]Section\n[2]Days\n[3]Time\n[4]Room\n[5]Remarks\n[6]Teacher\n[7]Exit\n===================""")
+    while class_option != "7":
+        if class_option in num:
+            for course in course_offerings[course_option]:
+                print(course +": " +course_offerings[course_option][course][sort[int(class_option)-1]])
+        class_option = input("Choose sort: ")
+    return "0"
+    
 
 
 # def viewcalendar():
@@ -18,72 +50,57 @@ def check_name(validation):
         return False
 
 
-def login(username, password):
-    get_userpass = users.get(username)
-    check_name(username)
-    if password == get_userpass:
-        print(f"Welcome, {username}! You are now logged in.")
-        main_page(username)
-    else:
-        print("Login failed. Wrong username or password.")
-        print("Please try again 2")
-        username_login = input("Username:")
-        password_login = input("Password:")
+def login(username, password):       
+    if check_name(username) == False:
+        username_login = input("Username: ")
+        password_login = input("Password: ")
         login(username_login, password_login)
+    else:
+        get_userpass = users[username].get("Password")
+        if password == get_userpass:
+            print(f"\nWelcome, {username}! You are now logged in.")
+            main_page(username)
+        else:
+            print("Login failed. Wrong username or password.")
+            username_login = input("Username: ")
+            password_login = input("Password: ")
+            login(username_login, password_login)
 
 
 def getinfo(profile):
-    if profile == "aaron":
-        prof = 0
-        for i in range(4):
-            print(user_info[0][i])
-            prof += 1
-    elif profile == "teo":
-        prof2 = 0
-        for i in range(4):
-            print(user_info[1][i])
-            prof2 += 1
-    elif profile == "sammy":
-        prof3 = 0
-        for i in range(4):
-            print(user_info[2][i])
-            prof3 += 1
-    else:
-        return False
+    for info in users[profile]:
+        if info != "Password":
+            print(info + ": " + users[profile][info])
 
 
 def main_page(profile):
     option2 = ""
     while option2 != "3":
-        print("""====Academic Profile====""")
-        getinfo(profile)
-        print("""=====Main Page=====
-       1] Select Course
-       2] My Calendar
-       3] Exit""")
         if option2 == "1":
-            courses()
+            option2 = classes(profile)
         elif option2 == "2":
             calendar()
         else:
-            option2 = input("Choose the given option (numbers only)")
+            print("""====Academic Profile====""")
+            getinfo(profile)
+            print("""=====Main Page=====\n[1] Select Course\n[2] My Calendar\n[3] Exit\n===================""")
+            option2 = input("Choose option: ")
 
 
-# Main control
 
 
+# Main control - Initial Opening
 print("Hello, Welcome to Enrollment System. Please proceed")
-print("""1.Login 
-2.Exit""")
+print("""1.Login\n2.Exit""")
 optionValue = input("Please enter the number choice: ")
 while optionValue != "2":
     if optionValue == "1":
-        login_name = input("Username:")
-        login_password = input("Password:")
+        login_name = input("Username: ")
+        login_password = input("Password: ")
         login(login_name, login_password)
         break
     else:
-        optionValue = input("""===Please choose the given option===
-    1] Login
-    2] Exit:
+        optionValue = input("""===Please choose a valid option===
+    [1] Login
+    [2] Exit:
     """)

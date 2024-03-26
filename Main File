@@ -15,12 +15,31 @@ course_offerings = {
                 "521":{"Section": "ER7", "Days": "M/H","Time": "12:45-14:15",  "Room": "SM203","Remarks": "Hybrid", "Teacher": "Dollente, Ithan Jessemar R."},
                 "6471":{"Section": "ER8", "Days": "T/F","Time": "14:30-16:00",  "Room": "AG702","Remarks": "Hybrid", "Teacher": "Bracino, Amir A."},
                 "7361":{"Section": "XXE1", "Days": "","Time": "", "Room": "","Remarks": "Special Class", "Teacher": ""},
+               },
+    "COEDISC": {
+                "1184":{"Section": "EQ1", "Days": "M","Time": "15:45-16:45", "Room": "VL204","Remarks": "Hybrid", "Teacher": "CAPIN, JUNE LORENZ"},
+                "1183":{"Section": "EQ2", "Days": "W","Time": "12:15-13:15", "Room": "AG1707","Remarks": "Hybrid", "Teacher": "CAPIN, JUNE LORENZ"},
+                "1182":{"Section": "EQ3", "Days": "W","Time": "11:00-12:00", "Room": "AG1704","Remarks": "Hybrid", "Teacher": "BANDALA, ARGEL"},
+                "1181":{"Section": "EQ4", "Days": "W","Time": "09:45-10:45", "Room": "AG1705","Remarks": "Hybrid", "Teacher": "BANDALA,ARGEL"},
+                "1180":{"Section": "EQ5", "Days": "W","Time": "13:00-14:00",  "Room": "AG1704","Remarks": "Hybrid", "Teacher": "PAKZAD, ARMIE"},
+                "1179":{"Section": "XXE1", "Days": "F","Time": "12:45-13:45",  "Room": "MRE304","Remarks": "Hybrid", "Teacher": "PAKZAD, ARMIE"},
+               },
+    "GEMATMW": {
+                "2281":{"Section": "A53D", "Days": "M/H","Time": "19:15-10:45", "Room": "SJ113","Remarks": "Hybrid", "Teacher": "ERMINO, MARC ALVIN R."},
+                "4069":{"Section": "A54C", "Days": "T/F","Time": "14:30-16:00", "Room": "LS226","Remarks": "Hybrid", "Teacher": "MORALES, JOHN VINCENT S."},
+                "4081":{"Section": "A54D", "Days": "M/H","Time": "11:00-12:30", "Room": "VL501","Remarks": "Hybrid", "Teacher": "CONCEPICION, EDWARD ROY G."},
+                "4088":{"Section": "A55C", "Days": "T/F","Time": "09:45-10:45", "Room": "LS109","Remarks": "Hybrid", "Teacher": "TAN, SONIA Y."},
+                "1780":{"Section": "A55D", "Days": "M/H","Time": "12:45-14:15", "Room": "SJ112","Remarks": "Hybrid", "Teacher": "ERMINO, MARC ALVIN R."},
+                "4062":{"Section": "XY22", "Days": "T/F","Time": "07:30-9:00", "Room": "AG710","Remarks": "Hybrid", "Teacher": "LAWAS, CRESENCIA M."},
+                "4068":{"Section": "Y01", "Days": "M/H","Time": "09:15-10:45", "Room": "AG709","Remarks": "Hybrid", "Teacher": "SONGSONG, DIANA C."},
+                "4067":{"Section": "Y02", "Days": "M/H","Time": "09:15-10:45", "Room": "AG709","Remarks": "Hybrid", "Teacher": "HERNANDEZ, ALANA MARGARITA R."},
+                "4094":{"Section": "Y03", "Days": "M/H","Time": "11:00-12:30", "Room": "AG709","Remarks": "Hybrid", "Teacher": "TAN, MICHELE G."},
                }
 }
 
 
 def classes(profile):
-    print("""\n=====Course Offerings=====\nCALENG2\nExit\n===================""")
+    print("""\n=====Course Offerings=====\nCALENG2\nCOEDISC\nGEMATMW\nExit\n===================""")
     course_option = ""
     class_option = ""
     num = ["1","2","3","4","5","6"]

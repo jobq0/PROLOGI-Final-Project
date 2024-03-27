@@ -7,88 +7,95 @@ users = {
 course_offerings = {
     "CALENG2": {
         "527": {"Section": "ER1", "Days": "T/F", "Time": "7:30-9:00", "Room": "AG1606", "Remarks": "Hybrid",
-                "Teacher": "Balboa, Christian Jay P."},
-        "526": {"Section": "ER2", "Days": "T/F", "Time": "09:15-10:45", "Room": "AG1611", "Remarks": "Hybrid",
-                "Teacher": "Balboa, Christian Jay P."},
+                "Teacher": "Balboa, Christian Jay P.", "Units": "7"},
+        "526": {"Section": "ER1", "Days": "T/F", "Time": "09:15-10:45", "Room": "AG1611", "Remarks": "Hybrid",
+                "Teacher": "Balboa, Christian Jay P.", "Units": "7"},
     },
     "COEDISC": {
-        "1184": {"Section": "EQ1", "Days": "M", "Time": "15:45-16:45", "Room": "VL204", "Remarks": "Hybrid",
-                 "Teacher": "CAPIN, JUNE LORENZ"},
+        "1184": {"Section": "EQ2", "Days": "M", "Time": "15:45-16:45", "Room": "VL204", "Remarks": "Hybrid",
+                 "Teacher": "CAPIN, JUNE LORENZ", "Units": "2"},
         "1183": {"Section": "EQ2", "Days": "W", "Time": "12:15-13:15", "Room": "AG1707", "Remarks": "Hybrid",
-                 "Teacher": "CAPIN, JUNE LORENZ"},
+                 "Teacher": "CAPIN, JUNE LORENZ", "Units": "2"},
     },
     "GEMATMW": {
         "2281": {"Section": "A53D", "Days": "M/H", "Time": "19:15-10:45", "Room": "SJ113", "Remarks": "Hybrid",
-                 "Teacher": "ERMINO, MARC ALVIN R."},
-        "4069": {"Section": "A54C", "Days": "T/F", "Time": "14:30-16:00", "Room": "LS226", "Remarks": "Hybrid",
-                 "Teacher": "MORALES, JOHN VINCENT S."},
+                 "Teacher": "ERMINO, MARC ALVIN R.", "Units": "2"},
+        "4069": {"Section": "A53D", "Days": "T/F", "Time": "14:30-16:00", "Room": "LS226", "Remarks": "Hybrid",
+                 "Teacher": "MORALES, JOHN VINCENT S.", "Units": "2"},
     },
     "ENGPHYS": {
-        "1233": {"Section": "ER1", "Days": "T/F", "Time": "1245 - 1415", "Room": "LS330", "Remarks": "Hybrid",
-                 "Teacher": "GALVEZ, MARIA CECILIA DANDAN"},
+        "1233": {"Section": "ER3", "Days": "T/F", "Time": "1245 - 1415", "Room": "LS330", "Remarks": "Hybrid",
+                 "Teacher": "GALVEZ, MARIA CECILIA DANDAN", "Units": "3"},
         "1232": {"Section": "ER3", "Days": "T/F", "Time": "14:30-16:00", "Room": "LS330", "Remarks": "Hybrid",
-                 "Teacher": "GALVEZ, MARIA CECILIA DANDAN"},
+                 "Teacher": "GALVEZ, MARIA CECILIA DANDAN", "Units": "3"},
     },
     "GEFTWEL": {
         "2033": {"Section": "YY01", "Days": "M", "Time": "10:00-12:00", "Room": "ER1011", "Remarks": "FACE TO FACE",
-                 "Teacher": "DIOQUINO, AUREA DICHOSO"},
-        "2019": {"Section": "YY02", "Days": "M", "Time": "13:00-15:00", "Room": "ER803", "Remarks": "FACE TO FACE",
-                 "Teacher": "DIMARUCOT, HEILDENBERG CABRALES"},
+                 "Teacher": "DIOQUINO, AUREA DICHOSO", "Units": "2"},
+        "2019": {"Section": "YY01", "Days": "M", "Time": "13:00-15:00", "Room": "ER803", "Remarks": "FACE TO FACE",
+                 "Teacher": "DIMARUCOT, HEILDENBERG CABRALES", "Units": "2"},
     },
     "LCFAITH": {
-        "2033": {"Section": "Y01", "Days": "M/H", "Time": "7:30-9:00", "Room": "SM202", "Remarks": "Hybrid",
-                 "Teacher": "ERNANDO, RAFAEL F."},
+        "2033": {"Section": "Y02", "Days": "M/H", "Time": "7:30-9:00", "Room": "SM202", "Remarks": "Hybrid",
+                 "Teacher": "ERNANDO, RAFAEL F.", "Units": "2"},
         "2019": {"Section": "Y02", "Days": "M/H", "Time": "9:15-10:45", "Room": "NONE", "Remarks": "FULL ONLINE",
-                 "Teacher": "DIONCO, CAROLINA CASTILLO"},
+                 "Teacher": "DIONCO, CAROLINA CASTILLO", "Units": "2"},
     },
     "LCLSTWO": {
-        "2033": {"Section": "Y15", "Days": "M", "Time": "15:30-17:30", "Room": "NONE", "Remarks": "ODD/FULL ONLINE",
-                 "Teacher": "CONOPIO, EDEN GRACE IRAG"},
-        "2019": {"Section": "Z16", "Days": "H", "Time": "7:30-9:30", "Room": "NONE", "Remarks": "EVEN/FULL ONLINE",
-                 "Teacher": "PENAFLOR, AURORA M."},
+        "2033": {"Section": "Y16", "Days": "M", "Time": "15:30-17:30", "Room": "NONE", "Remarks": "ODD/FULL ONLINE",
+                 "Teacher": "CONOPIO, EDEN GRACE IRAG", "Units": "1"},
+        "2019": {"Section": "Y16", "Days": "H", "Time": "7:30-9:30", "Room": "NONE", "Remarks": "EVEN/FULL ONLINE",
+                 "Teacher": "PENAFLOR, AURORA M.", "Units": "1"},
     },
     "LAB1": {
-        "5080": {"Section": "ER2", "Days": "H", "Time": "TIME", "Room": "NONE", "Remarks": "FACE TO FACE",
-                 "Teacher": "CONOPIO, EDEN GRACE IRAG"},
+        "5080": {"Section": "Z16", "Days": "H", "Time": "TIME", "Room": "NONE", "Remarks": "FACE TO FACE",
+                 "Teacher": "CONOPIO, EDEN GRACE IRAG", "Units": "3"},
         "2019": {"Section": "Z16", "Days": "H", "Time": "TIME", "Room": "NONE", "Remarks": "FACE TO FACE",
-                 "Teacher": "PENAFLOR, AURORA M."},
+                 "Teacher": "PENAFLOR, AURORA M.", "Units": "3"},
     },
     "LAB2": {
-        "2033": {"Section": "Y15", "Days": "M", "Time": "TIME", "Room": "NONE", "Remarks": "FACE TO FACE",
-                 "Teacher": "NAME"},
-        "2019": {"Section": "Z16", "Days": "H", "Time": "TIME", "Room": "NONE", "Remarks": "FACE TO FACE",
-                 "Teacher": "NAME"},
+        "2033": {"Section": "AG1403", "Days": "M", "Time": "TIME", "Room": "NONE", "Remarks": "FACE TO FACE",
+                 "Teacher": "NAME", "Units": "3"},
+        "2019": {"Section": "AG1403", "Days": "H", "Time": "TIME", "Room": "NONE", "Remarks": "FACE TO FACE",
+                 "Teacher": "NAME", "Units": "3"},
     },
     "LAB3": {
-        "2033": {"Section": "Y15", "Days": "M", "Time": "TIME", "Room": "NONE", "Remarks": "FACE TO FACE",
-                 "Teacher": "NAME"},
-        "2019": {"Section": "Z16", "Days": "H", "Time": "TIME", "Room": "NONE", "Remarks": "FACE TO FACE",
-                 "Teacher": "NAME"},
+        "2033": {"Section": "SM402A", "Days": "M", "Time": "TIME", "Room": "NONE", "Remarks": "FACE TO FACE",
+                 "Teacher": "NAME", "Units": "3"},
+        "2019": {"Section": "SM402A", "Days": "H", "Time": "TIME", "Room": "NONE", "Remarks": "FACE TO FACE",
+                 "Teacher": "NAME", "Units": "3"},
 
     }
 }
 
-
+store_pub = []
 def classes():
     print("""\n=====Course Offerings=====\nCALENG2\nCOEDISC\nGEMATMW\nENGPHYS\nGEFTWEL\nLCFAITH\nLCLSTWO\nLAB1\nLAB2\nLAB3\n[Q]Exit""")
     course_option = ""
-    class_option = ""
     while course_option not in course_offerings:
         if course_option == "Q": # Q to exit from the course options
             return "0"
         course_option = input("Choose a course (Ex. CALENG2): ")
 
-    while class_option != "Q": # Q to exit from the Schedules
         print("""\n=====Select Schedule=====""")
         for i in course_offerings[course_option]: # the section from the subject
             pub = i
             print(40 * "=")
+            print("Class number" + ":" + i)
             for sub in course_offerings[course_option][pub]: # displays the details of the subject
                 print(sub + ": " + course_offerings[course_option][pub][sub])
-        class_option = input("Choose sort [1/2] or [Q]Exit: ")
+        class_option = input("Choose [Class number]: ")
 
-
-# def viewcalendar():
+        if class_option in course_offerings[course_option]:
+            x = course_offerings[course_option][class_option]["Units"]
+            store_pub.append((int(x)))
+            if int(sum(store_pub)) < 12:
+                print("Warning: You can't add more than 12")
+                return "Q"
+            else:
+                print("Successfully added!!")
+                print("Total Units: " + str(sum(store_pub)))
+                return "Q"
 
 
 def check_name(validation):
@@ -116,12 +123,6 @@ def login(username, password):
             login(username_login, password_login)
 
 
-def getinfo(profile):
-    for info in users[profile]:
-        if info != "Password":
-            print(info + ": " + users[profile][info])
-
-
 def main_page(profile):
     option2 = ""
     while option2 != "3":
@@ -131,7 +132,9 @@ def main_page(profile):
             print("Calendar")
         else:
             print("""====Academic Profile====""")
-            getinfo(profile)
+            for info in users[profile]:
+                if info != "Password":
+                    print(info + ": " + users[profile][info])
             print("""=====Main Page=====\n[1] Select Course\n[2] My Calendar\n[3] Exit\n===================""")
             option2 = input("Choose option: ")
 

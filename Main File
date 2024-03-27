@@ -2,60 +2,90 @@ users = {
     "Aaron": {"Password": "pop", "Course": "CPE", "Address": "Manila", "ID Number": "05165164"},
     "Teo": {"Password": "123", "Course": "ECE", "Address": "Pasay", "ID Number": "05165165"},
     "Sammy": {"Password": "pass", "Course": "CCS", "Address": "Quezon City", "ID Number": "05165166"}
-    }
+}
 
 course_offerings = {
     "CALENG2": {
-                "527":{"Section": "ER1", "Days": "T/F","Time": "7:30-9:00", "Room": "AG1606","Remarks": "Hybrid", "Teacher": "Balboa, Christian Jay P."},
-                "526":{"Section": "ER2", "Days": "T/F","Time": "09:15-10:45", "Room": "AG1611","Remarks": "Hybrid", "Teacher": "Balboa, Christian Jay P."},
-                "525":{"Section": "ER3", "Days": "T/F","Time": "12:45-14:15", "Room": "AG1611","Remarks": "Hybrid", "Teacher": "Baraoidan, Wilheliza Almazar"},
-                "524":{"Section": "ER4", "Days": "T/F","Time": "14:30-16:00", "Room": "VL023","Remarks": "Hybrid", "Teacher": "Baraoidan, Wilheliza Almazar"},
-                "523":{"Section": "ER5", "Days": "M/H","Time": "7:30-9:00",  "Room": "AG702","Remarks": "Hybrid", "Teacher": "Delfin, Robert E."},
-                "522":{"Section": "ER6", "Days": "M/H","Time": "09:15-10:45",  "Room": "VL308","Remarks": "Hybrid", "Teacher": "Delfin, Robert E."},
-                "521":{"Section": "ER7", "Days": "M/H","Time": "12:45-14:15",  "Room": "SM203","Remarks": "Hybrid", "Teacher": "Dollente, Ithan Jessemar R."},
-                "6471":{"Section": "ER8", "Days": "T/F","Time": "14:30-16:00",  "Room": "AG702","Remarks": "Hybrid", "Teacher": "Bracino, Amir A."},
-                "7361":{"Section": "XXE1", "Days": "","Time": "", "Room": "","Remarks": "Special Class", "Teacher": ""},
-               },
+        "527": {"Section": "ER1", "Days": "T/F", "Time": "7:30-9:00", "Room": "AG1606", "Remarks": "Hybrid",
+                "Teacher": "Balboa, Christian Jay P."},
+        "526": {"Section": "ER2", "Days": "T/F", "Time": "09:15-10:45", "Room": "AG1611", "Remarks": "Hybrid",
+                "Teacher": "Balboa, Christian Jay P."},
+    },
     "COEDISC": {
-                "1184":{"Section": "EQ1", "Days": "M","Time": "15:45-16:45", "Room": "VL204","Remarks": "Hybrid", "Teacher": "CAPIN, JUNE LORENZ"},
-                "1183":{"Section": "EQ2", "Days": "W","Time": "12:15-13:15", "Room": "AG1707","Remarks": "Hybrid", "Teacher": "CAPIN, JUNE LORENZ"},
-                "1182":{"Section": "EQ3", "Days": "W","Time": "11:00-12:00", "Room": "AG1704","Remarks": "Hybrid", "Teacher": "BANDALA, ARGEL"},
-                "1181":{"Section": "EQ4", "Days": "W","Time": "09:45-10:45", "Room": "AG1705","Remarks": "Hybrid", "Teacher": "BANDALA,ARGEL"},
-                "1180":{"Section": "EQ5", "Days": "W","Time": "13:00-14:00",  "Room": "AG1704","Remarks": "Hybrid", "Teacher": "PAKZAD, ARMIE"},
-                "1179":{"Section": "XXE1", "Days": "F","Time": "12:45-13:45",  "Room": "MRE304","Remarks": "Hybrid", "Teacher": "PAKZAD, ARMIE"},
-               },
+        "1184": {"Section": "EQ1", "Days": "M", "Time": "15:45-16:45", "Room": "VL204", "Remarks": "Hybrid",
+                 "Teacher": "CAPIN, JUNE LORENZ"},
+        "1183": {"Section": "EQ2", "Days": "W", "Time": "12:15-13:15", "Room": "AG1707", "Remarks": "Hybrid",
+                 "Teacher": "CAPIN, JUNE LORENZ"},
+    },
     "GEMATMW": {
-                "2281":{"Section": "A53D", "Days": "M/H","Time": "19:15-10:45", "Room": "SJ113","Remarks": "Hybrid", "Teacher": "ERMINO, MARC ALVIN R."},
-                "4069":{"Section": "A54C", "Days": "T/F","Time": "14:30-16:00", "Room": "LS226","Remarks": "Hybrid", "Teacher": "MORALES, JOHN VINCENT S."},
-                "4081":{"Section": "A54D", "Days": "M/H","Time": "11:00-12:30", "Room": "VL501","Remarks": "Hybrid", "Teacher": "CONCEPICION, EDWARD ROY G."},
-                "4088":{"Section": "A55C", "Days": "T/F","Time": "09:45-10:45", "Room": "LS109","Remarks": "Hybrid", "Teacher": "TAN, SONIA Y."},
-                "1780":{"Section": "A55D", "Days": "M/H","Time": "12:45-14:15", "Room": "SJ112","Remarks": "Hybrid", "Teacher": "ERMINO, MARC ALVIN R."},
-                "4062":{"Section": "XY22", "Days": "T/F","Time": "07:30-9:00", "Room": "AG710","Remarks": "Hybrid", "Teacher": "LAWAS, CRESENCIA M."},
-                "4068":{"Section": "Y01", "Days": "M/H","Time": "09:15-10:45", "Room": "AG709","Remarks": "Hybrid", "Teacher": "SONGSONG, DIANA C."},
-                "4067":{"Section": "Y02", "Days": "M/H","Time": "09:15-10:45", "Room": "AG709","Remarks": "Hybrid", "Teacher": "HERNANDEZ, ALANA MARGARITA R."},
-                "4094":{"Section": "Y03", "Days": "M/H","Time": "11:00-12:30", "Room": "AG709","Remarks": "Hybrid", "Teacher": "TAN, MICHELE G."},
-               }
+        "2281": {"Section": "A53D", "Days": "M/H", "Time": "19:15-10:45", "Room": "SJ113", "Remarks": "Hybrid",
+                 "Teacher": "ERMINO, MARC ALVIN R."},
+        "4069": {"Section": "A54C", "Days": "T/F", "Time": "14:30-16:00", "Room": "LS226", "Remarks": "Hybrid",
+                 "Teacher": "MORALES, JOHN VINCENT S."},
+    },
+    "ENGPHYS": {
+        "1233": {"Section": "ER1", "Days": "T/F", "Time": "1245 - 1415", "Room": "LS330", "Remarks": "Hybrid",
+                 "Teacher": "GALVEZ, MARIA CECILIA DANDAN"},
+        "1232": {"Section": "ER3", "Days": "T/F", "Time": "14:30-16:00", "Room": "LS330", "Remarks": "Hybrid",
+                 "Teacher": "GALVEZ, MARIA CECILIA DANDAN"},
+    },
+    "GEFTWEL": {
+        "2033": {"Section": "YY01", "Days": "M", "Time": "10:00-12:00", "Room": "ER1011", "Remarks": "FACE TO FACE",
+                 "Teacher": "DIOQUINO, AUREA DICHOSO"},
+        "2019": {"Section": "YY02", "Days": "M", "Time": "13:00-15:00", "Room": "ER803", "Remarks": "FACE TO FACE",
+                 "Teacher": "DIMARUCOT, HEILDENBERG CABRALES"},
+    },
+    "LCFAITH": {
+        "2033": {"Section": "Y01", "Days": "M/H", "Time": "7:30-9:00", "Room": "SM202", "Remarks": "Hybrid",
+                 "Teacher": "ERNANDO, RAFAEL F."},
+        "2019": {"Section": "Y02", "Days": "M/H", "Time": "9:15-10:45", "Room": "NONE", "Remarks": "FULL ONLINE",
+                 "Teacher": "DIONCO, CAROLINA CASTILLO"},
+    },
+    "LCLSTWO": {
+        "2033": {"Section": "Y15", "Days": "M", "Time": "15:30-17:30", "Room": "NONE", "Remarks": "ODD/FULL ONLINE",
+                 "Teacher": "CONOPIO, EDEN GRACE IRAG"},
+        "2019": {"Section": "Z16", "Days": "H", "Time": "7:30-9:30", "Room": "NONE", "Remarks": "EVEN/FULL ONLINE",
+                 "Teacher": "PENAFLOR, AURORA M."},
+    },
+    "LAB1": {
+        "5080": {"Section": "ER2", "Days": "H", "Time": "TIME", "Room": "NONE", "Remarks": "FACE TO FACE",
+                 "Teacher": "CONOPIO, EDEN GRACE IRAG"},
+        "2019": {"Section": "Z16", "Days": "H", "Time": "TIME", "Room": "NONE", "Remarks": "FACE TO FACE",
+                 "Teacher": "PENAFLOR, AURORA M."},
+    },
+    "LAB2": {
+        "2033": {"Section": "Y15", "Days": "M", "Time": "TIME", "Room": "NONE", "Remarks": "FACE TO FACE",
+                 "Teacher": "NAME"},
+        "2019": {"Section": "Z16", "Days": "H", "Time": "TIME", "Room": "NONE", "Remarks": "FACE TO FACE",
+                 "Teacher": "NAME"},
+    },
+    "LAB3": {
+        "2033": {"Section": "Y15", "Days": "M", "Time": "TIME", "Room": "NONE", "Remarks": "FACE TO FACE",
+                 "Teacher": "NAME"},
+        "2019": {"Section": "Z16", "Days": "H", "Time": "TIME", "Room": "NONE", "Remarks": "FACE TO FACE",
+                 "Teacher": "NAME"},
+
+    }
 }
 
 
-def classes(profile):
-    print("""\n=====Course Offerings=====\nCALENG2\nCOEDISC\nGEMATMW\nExit\n===================""")
+def classes():
+    print("""\n=====Course Offerings=====\nCALENG2\nCOEDISC\nGEMATMW\nENGPHYS\nGEFTWEL\nLCFAITH\nLCLSTWO\nLAB1\nLAB2\nLAB3\n[Q]Exit""")
     course_option = ""
     class_option = ""
-    num = ["1","2","3","4","5","6"]
-    sort = ["Section","Days","Time","Room","Remarks","Teacher"]
     while course_option not in course_offerings:
-        if course_option == "7":
+        if course_option == "Q": # Q to exit from the course options
             return "0"
-        course_option = input("Choose a course: ")
-    print("""\n=====Sort by=====\n[1]Section\n[2]Days\n[3]Time\n[4]Room\n[5]Remarks\n[6]Teacher\n[7]Exit\n===================""")
-    while class_option != "7":
-        if class_option in num:
-            for course in course_offerings[course_option]:
-                print(course +": " +course_offerings[course_option][course][sort[int(class_option)-1]])
-        class_option = input("Choose sort: ")
-    return "0"
-    
+        course_option = input("Choose a course (Ex. CALENG2): ")
+
+    while class_option != "Q": # Q to exit from the Schedules
+        print("""\n=====Select Schedule=====""")
+        for i in course_offerings[course_option]: # the section from the subject
+            pub = i
+            print(40 * "=")
+            for sub in course_offerings[course_option][pub]: # displays the details of the subject
+                print(sub + ": " + course_offerings[course_option][pub][sub])
+        class_option = input("Choose sort [1/2] or [Q]Exit: ")
 
 
 # def viewcalendar():
@@ -69,7 +99,7 @@ def check_name(validation):
         return False
 
 
-def login(username, password):       
+def login(username, password):
     if check_name(username) == False:
         username_login = input("Username: ")
         password_login = input("Password: ")
@@ -96,16 +126,14 @@ def main_page(profile):
     option2 = ""
     while option2 != "3":
         if option2 == "1":
-            option2 = classes(profile)
+            option2 = classes()
         elif option2 == "2":
-            calendar()
+            print("Calendar")
         else:
             print("""====Academic Profile====""")
             getinfo(profile)
             print("""=====Main Page=====\n[1] Select Course\n[2] My Calendar\n[3] Exit\n===================""")
             option2 = input("Choose option: ")
-
-
 
 
 # Main control - Initial Opening

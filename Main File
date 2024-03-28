@@ -8,7 +8,7 @@ users = {
 
 course_offerings = {
     "CALENG2": {
-        "527": {"Section": "ER1", "Days": "T/F", "Time": "7:30-9:00", "Room": "AG1606", "Remarks": "Hybrid",
+        "527": {"Section": "ER1", "Days": "T/F", "Time": "07:30-09:00", "Room": "AG1606", "Remarks": "Hybrid",
                 "Teacher": "Balboa, Christian Jay P.", "Units": "7"},
         "526": {"Section": "ER1", "Days": "T/F", "Time": "09:15-10:45", "Room": "AG1611", "Remarks": "Hybrid",
                 "Teacher": "Balboa, Christian Jay P.", "Units": "7"},
@@ -38,15 +38,15 @@ course_offerings = {
                  "Teacher": "DIMARUCOT, HEILDENBERG CABRALES", "Units": "2"},
     },
     "LCFAITH": {
-        "2033": {"Section": "Y02", "Days": "M/H", "Time": "7:30-9:00", "Room": "SM202", "Remarks": "Hybrid",
+        "2033": {"Section": "Y02", "Days": "M/H", "Time": "07:30-09:00", "Room": "SM202", "Remarks": "Hybrid",
                  "Teacher": "ERNANDO, RAFAEL F.", "Units": "2"},
-        "2019": {"Section": "Y02", "Days": "M/H", "Time": "9:15-10:45", "Room": "NONE", "Remarks": "FULL ONLINE",
+        "2019": {"Section": "Y02", "Days": "M/H", "Time": "09:15-10:45", "Room": "NONE", "Remarks": "FULL ONLINE",
                  "Teacher": "DIONCO, CAROLINA CASTILLO", "Units": "2"},
     },
     "LCLSTWO": {
         "2033": {"Section": "Y16", "Days": "M", "Time": "15:30-17:30", "Room": "NONE", "Remarks": "ODD/FULL ONLINE",
                  "Teacher": "CONOPIO, EDEN GRACE IRAG", "Units": "1"},
-        "2019": {"Section": "Y16", "Days": "H", "Time": "7:30-9:30", "Room": "NONE", "Remarks": "EVEN/FULL ONLINE",
+        "2019": {"Section": "Y16", "Days": "H", "Time": "07:30-09:30", "Room": "NONE", "Remarks": "EVEN/FULL ONLINE",
                  "Teacher": "PENAFLOR, AURORA M.", "Units": "1"},
     },
     "LAB1": {
@@ -89,19 +89,23 @@ def classes(profile):
         class_option = input("Choose [Class number]: ")
 
         if class_option in course_offerings[course_option]:
-            x = course_offerings[course_option][class_option]["Units"]
-            users[profile]["Enrolled"][class_option] = course_offerings[course_option][class_option]
-            #note to self the check schedule is to make sure that the added class is not in conflit any previously added class
-            #check_schedule(class_option,profile)
-            store_pub.append((int(x)))
-            if int(sum(store_pub)) < 12:
-                print("Warning: You can't add more than 12")
-                return "Q"
+            if (check_schedule(profile,class_option, course_option) == True): 
+                print("\nRETURNING TRUE\n")
+                x = course_offerings[course_option][class_option]["Units"]
+                users[profile]["Enrolled"][class_option] = course_offerings[course_option][class_option]
+                store_pub.append((int(x)))
+                if int(sum(store_pub)) < 12:
+                    print("Warning: You can't add more than 12")
+                    return "Q"
+                else:
+                    print("Successfully added!!")
+                    print("Total Units: " + str(sum(store_pub)))
+                    return "Q"
             else:
-                print("Successfully added!!")
-                print("Total Units: " + str(sum(store_pub)))
-                return "Q"
-
+                print("Schedule Conflict")
+                
+            
+#Problems: only works on tuesdays rn
 def calendar(profile):
     days_week = [[],[],[],[],[],[],[]]
     print(users[profile]["Enrolled"])
@@ -110,9 +114,7 @@ def calendar(profile):
         if "M" in users[profile]["Enrolled"][calendar_schedule]["Days"]:
             days_week[0].append(calendar_schedule + ": " + users[profile]["Enrolled"][calendar_schedule]["Time"] + "\n")
         if "T" in users[profile]["Enrolled"][calendar_schedule]["Days"]:
-            days_week[1].append(calendar_schedule + ": " + users[profile]["Enrolled"][calendar_schedule]["Time"] + "\n")
-    
-       
+            days_week[1].append(calendar_schedule + ": " + users[profile]["Enrolled"][calendar_schedule]["Time"] + "\n") 
     for day in days_week:
         n = len(day)
         for i in range(n):
@@ -135,14 +137,24 @@ def calendar(profile):
                     swapped = True
             if (swapped == False):
                 break
-            
-    
     print("=====CALENDAR=====")
     print("==Tuesday==\n")
     for i in days_week[1]:
         print(i+"\n")
     
-#def check_schedule():
+#Problems: only accounts for time, not days
+def check_schedule(profile, class_option, course_option):
+    if len(users[profile]["Enrolled"]) != 0:
+        for schedule in users[profile]["Enrolled"]:
+            if datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][0:5], '%H:%M') <= datetime.strptime(course_offerings[course_option][class_option]["Time"][0:5], '%H:%M') and datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][6:10], '%H:%M') >= datetime.strptime(course_offerings[course_option][class_option]["Time"][0:5],'%H:%M'):
+                return False
+            elif datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][0:5], '%H:%M') <= datetime.strptime(course_offerings[course_option][class_option]["Time"][6:10], '%H:%M') and datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][6:10], '%H:%M') >= datetime.strptime(course_offerings[course_option][class_option]["Time"][6:10], '%H:%M'):
+                return False
+            else:
+                return True
+    else:
+        return True
+        
 
 
 def check_name(validation):

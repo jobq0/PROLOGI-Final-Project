@@ -1,7 +1,9 @@
+from datetime import datetime
+
 users = {
-    "Aaron": {"Password": "pop", "Course": "CPE", "Address": "Manila", "ID Number": "05165164"},
-    "Teo": {"Password": "123", "Course": "ECE", "Address": "Pasay", "ID Number": "05165165"},
-    "Sammy": {"Password": "pass", "Course": "CCS", "Address": "Quezon City", "ID Number": "05165166"}
+    "Aaron": {"Password": "pop", "Course": "CPE", "Address": "Manila", "ID Number": "05165164", "Enrolled":{} },
+    "Teo": {"Password": "123", "Course": "ECE", "Address": "Pasay", "ID Number": "05165165", "Enrolled":{}},
+    "Sammy": {"Password": "pass", "Course": "CCS", "Address": "Quezon City", "ID Number": "05165166", "Enrolled":{}}
 }
 
 course_offerings = {
@@ -69,7 +71,7 @@ course_offerings = {
 }
 
 store_pub = []
-def classes():
+def classes(profile):
     print("""\n=====Course Offerings=====\nCALENG2\nCOEDISC\nGEMATMW\nENGPHYS\nGEFTWEL\nLCFAITH\nLCLSTWO\nLAB1\nLAB2\nLAB3\n[Q]Exit""")
     course_option = ""
     while course_option not in course_offerings:
@@ -88,6 +90,9 @@ def classes():
 
         if class_option in course_offerings[course_option]:
             x = course_offerings[course_option][class_option]["Units"]
+            users[profile]["Enrolled"][class_option] = course_offerings[course_option][class_option]
+            #note to self the check schedule is to make sure that the added class is not in conflit any previously added class
+            #check_schedule(class_option,profile)
             store_pub.append((int(x)))
             if int(sum(store_pub)) < 12:
                 print("Warning: You can't add more than 12")
@@ -96,6 +101,48 @@ def classes():
                 print("Successfully added!!")
                 print("Total Units: " + str(sum(store_pub)))
                 return "Q"
+
+def calendar(profile):
+    days_week = [[],[],[],[],[],[],[]]
+    print(users[profile]["Enrolled"])
+    for calendar_schedule in users[profile]["Enrolled"]:
+        print(users[profile]["Enrolled"][calendar_schedule])
+        if "M" in users[profile]["Enrolled"][calendar_schedule]["Days"]:
+            days_week[0].append(calendar_schedule + ": " + users[profile]["Enrolled"][calendar_schedule]["Time"] + "\n")
+        if "T" in users[profile]["Enrolled"][calendar_schedule]["Days"]:
+            days_week[1].append(calendar_schedule + ": " + users[profile]["Enrolled"][calendar_schedule]["Time"] + "\n")
+    
+       
+    for day in days_week:
+        n = len(day)
+        for i in range(n):
+            swapped = False
+            for j in range(0,n-i-1):
+                Ostart = 6
+                Tstart = 6
+                Oend=11
+                Tend = 11
+                if len(day[j]) <18:
+                    Ostart -=1
+                    Oend -=1
+                if len(day[j+1]) <18:
+                    Tstart-=1
+                    Tend -=1
+                comp1 = datetime.strptime(day[j][Ostart:Oend], '%H:%M')
+                comp2 = datetime.strptime(day[j+1][Tstart:Tend], '%H:%M')
+                if comp1 > comp2:
+                    day[j], day[j+1] = day[j+1], day[j]
+                    swapped = True
+            if (swapped == False):
+                break
+            
+    
+    print("=====CALENDAR=====")
+    print("==Tuesday==\n")
+    for i in days_week[1]:
+        print(i+"\n")
+    
+#def check_schedule():
 
 
 def check_name(validation):
@@ -127,13 +174,13 @@ def main_page(profile):
     option2 = ""
     while option2 != "3":
         if option2 == "1":
-            option2 = classes()
+            option2 = classes(profile)
         elif option2 == "2":
-            print("Calendar")
+            option2 = calendar(profile)
         else:
             print("""====Academic Profile====""")
             for info in users[profile]:
-                if info != "Password":
+                if info != "Password" and info !="Enrolled":
                     print(info + ": " + users[profile][info])
             print("""=====Main Page=====\n[1] Select Course\n[2] My Calendar\n[3] Exit\n===================""")
             option2 = input("Choose option: ")

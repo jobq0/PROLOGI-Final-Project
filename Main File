@@ -10,7 +10,7 @@ course_offerings = {
     "CALENG2": {
         "527": {"Section": "ER1", "Days": "T/F", "Time": "07:30-09:00", "Room": "AG1606", "Remarks": "Hybrid",
                 "Teacher": "Balboa, Christian Jay P.", "Units": "7"},
-        "526": {"Section": "ER1", "Days": "T/F", "Time": "09:15-10:45", "Room": "AG1611", "Remarks": "Hybrid",
+        "526": {"Section": "ER1", "Days": "T/F", "Time": "08:30-10:45", "Room": "AG1611", "Remarks": "Hybrid",
                 "Teacher": "Balboa, Christian Jay P.", "Units": "7"},
     },
     "COEDISC": {
@@ -52,7 +52,7 @@ course_offerings = {
     "LBYPH1A": {
         "5080": {"Section": "ER2", "Days": "H", "Time": "11:00-14:00", "Room": "SJ410", "Remarks": "FACE TO FACE",
                  "Teacher": "BOLALIN, RAYMOND", "Units": "1"},
-        "2019": {"Section": "ER3", "Days": "F", "Time": "7:30-10:30", "Room": "SJ410", "Remarks": "FACE TO FACE",
+        "2019": {"Section": "ER3", "Days": "F", "Time": "07:30-10:30", "Room": "SJ410", "Remarks": "FACE TO FACE",
                  "Teacher": "BOLALIN, RAYMOND.", "Units": "1"},
     },
     "LBYCPEI": {
@@ -64,7 +64,7 @@ course_offerings = {
     "LBYEC2M": {
         "2033": {"Section": "EG5", "Days": "T", "Time": "16:15-19:15", "Room": "SM402A", "Remarks": "FACE TO FACE",
                  "Teacher": "ROCES, SUSAN", "Units": "1"},
-        "2019": {"Section": "EG3", "Days": "W", "Time": "11:00-4:00", "Room": "SM402A", "Remarks": "FACE TO FACE",
+        "2019": {"Section": "EG3", "Days": "W", "Time": "11:00-04:00", "Room": "SM402A", "Remarks": "FACE TO FACE",
                  "Teacher": "ROCES, SUSAN", "Units": "1"},
 
     }
@@ -158,11 +158,10 @@ def calendar(profile):
         print(i)
 
     
-#Problems: schedule conflict is not working properly properly
 def check_schedule(profile, class_option, course_option):
     if len(users[profile]["Enrolled"]) != 0:
             for schedule in users[profile]["Enrolled"]:
-                if datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][0:5], '%H:%M') <= datetime.strptime(course_offerings[course_option][class_option]["Time"][0:5], '%H:%M') and datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][6:10], '%H:%M') >= datetime.strptime(course_offerings[course_option][class_option]["Time"][0:5],'%H:%M'):
+                if (datetime.strptime(course_offerings[course_option][class_option]["Time"][0:5], '%H:%M') >= datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][0:5], '%H:%M')) and (datetime.strptime(course_offerings[course_option][class_option]["Time"][0:5],'%H:%M') <= datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][6:10], '%H:%M')):
                     if len(course_offerings[course_option][class_option]["Days"]) == 1:
                         if course_offerings[course_option][class_option]["Days"] in users[profile]["Enrolled"][schedule]["Days"]:
                             return False
@@ -172,7 +171,7 @@ def check_schedule(profile, class_option, course_option):
                         return True
                     else:
                         return False
-                elif datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][0:5], '%H:%M') <= datetime.strptime(course_offerings[course_option][class_option]["Time"][6:10], '%H:%M') and datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][6:10], '%H:%M') >= datetime.strptime(course_offerings[course_option][class_option]["Time"][6:10], '%H:%M'):
+                elif (datetime.strptime(course_offerings[course_option][class_option]["Time"][6:10], '%H:%M') >= datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][0:5], '%H:%M')) and (datetime.strptime(course_offerings[course_option][class_option]["Time"][6:10],'%H:%M') <= datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][6:10], '%H:%M')):
                     if len(course_offerings[course_option][class_option]["Days"]) == 1:
                         if course_offerings[course_option][class_option]["Days"] in users[profile]["Enrolled"][schedule]["Days"]:
                             return False

@@ -72,7 +72,7 @@ course_offerings = {
 
 store_pub = []
 def classes(profile):
-    print("""\n=====Course Offerings=====\nCALENG2\nCOEDISC\nGEMATMW\nENGPHYS\nGEFTWEL\nLCFAITH\nLCLSTWO\nLAB1\nLAB2\nLAB3\n[Q]Exit""")
+    print("""\n=====Course Offerings=====\nCALENG2\nCOEDISC\nGEMATMW\nENGPHYS\nGEFTWEL\nLCFAITH\nLCLSTWO\nLBYPH1A\nLBYCPEI\nLBYEC2M\n[Q]Exit""")
     course_option = ""
     while course_option not in course_offerings:
         if course_option == "Q": # Q to exit from the course options
@@ -90,7 +90,6 @@ def classes(profile):
 
         if class_option in course_offerings[course_option]:
             if (check_schedule(profile,class_option, course_option) == True): 
-                print("\nRETURNING TRUE\n")
                 x = course_offerings[course_option][class_option]["Units"]
                 users[profile]["Enrolled"][class_option] = course_offerings[course_option][class_option]
                 store_pub.append((int(x)))
@@ -105,16 +104,20 @@ def classes(profile):
                 print("Schedule Conflict")
                 
             
-#Problems: only works on tuesdays rn
+#Problems: looks ugly
 def calendar(profile):
-    days_week = [[],[],[],[],[],[],[]]
-    print(users[profile]["Enrolled"])
+    days_week = [[],[],[],[],[]]
     for calendar_schedule in users[profile]["Enrolled"]:
-        print(users[profile]["Enrolled"][calendar_schedule])
         if "M" in users[profile]["Enrolled"][calendar_schedule]["Days"]:
             days_week[0].append(calendar_schedule + ": " + users[profile]["Enrolled"][calendar_schedule]["Time"] + "\n")
         if "T" in users[profile]["Enrolled"][calendar_schedule]["Days"]:
             days_week[1].append(calendar_schedule + ": " + users[profile]["Enrolled"][calendar_schedule]["Time"] + "\n") 
+        if "W" in users[profile]["Enrolled"][calendar_schedule]["Days"]:
+            days_week[2].append(calendar_schedule + ": " + users[profile]["Enrolled"][calendar_schedule]["Time"] + "\n")
+        if "H" in users[profile]["Enrolled"][calendar_schedule]["Days"]:
+            days_week[3].append(calendar_schedule + ": " + users[profile]["Enrolled"][calendar_schedule]["Time"] + "\n")
+        if "F" in users[profile]["Enrolled"][calendar_schedule]["Days"]:
+            days_week[4].append(calendar_schedule + ": " + users[profile]["Enrolled"][calendar_schedule]["Time"] + "\n")
     for day in days_week:
         n = len(day)
         for i in range(n):
@@ -138,20 +141,49 @@ def calendar(profile):
             if (swapped == False):
                 break
     print("=====CALENDAR=====")
-    print("==Tuesday==\n")
+    print("==Monday==")
+    for i in days_week[0]:
+        print(i)
+    print("==Tuesday==")
     for i in days_week[1]:
-        print(i+"\n")
+        print(i)
+    print("==Wednesday==")
+    for i in days_week[2]:
+        print(i)
+    print("==Thursday==")
+    for i in days_week[3]:
+        print(i)
+    print("==Friday==")
+    for i in days_week[4]:
+        print(i)
+
     
-#Problems: only accounts for time, not days
+#Problems: schedule conflict is not working properly properly
 def check_schedule(profile, class_option, course_option):
     if len(users[profile]["Enrolled"]) != 0:
-        for schedule in users[profile]["Enrolled"]:
-            if datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][0:5], '%H:%M') <= datetime.strptime(course_offerings[course_option][class_option]["Time"][0:5], '%H:%M') and datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][6:10], '%H:%M') >= datetime.strptime(course_offerings[course_option][class_option]["Time"][0:5],'%H:%M'):
-                return False
-            elif datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][0:5], '%H:%M') <= datetime.strptime(course_offerings[course_option][class_option]["Time"][6:10], '%H:%M') and datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][6:10], '%H:%M') >= datetime.strptime(course_offerings[course_option][class_option]["Time"][6:10], '%H:%M'):
-                return False
-            else:
-                return True
+            for schedule in users[profile]["Enrolled"]:
+                if datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][0:5], '%H:%M') <= datetime.strptime(course_offerings[course_option][class_option]["Time"][0:5], '%H:%M') and datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][6:10], '%H:%M') >= datetime.strptime(course_offerings[course_option][class_option]["Time"][0:5],'%H:%M'):
+                    if len(course_offerings[course_option][class_option]["Days"]) == 1:
+                        if course_offerings[course_option][class_option]["Days"] in users[profile]["Enrolled"][schedule]["Days"]:
+                            return False
+                        else:
+                            return True
+                    elif (course_offerings[course_option][class_option]["Days"][0] not in users[profile]["Enrolled"][schedule]["Days"] )or (course_offerings[course_option][class_option]["Days"][2] not in users[profile]["Enrolled"][schedule]["Days"]):
+                        return True
+                    else:
+                        return False
+                elif datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][0:5], '%H:%M') <= datetime.strptime(course_offerings[course_option][class_option]["Time"][6:10], '%H:%M') and datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][6:10], '%H:%M') >= datetime.strptime(course_offerings[course_option][class_option]["Time"][6:10], '%H:%M'):
+                    if len(course_offerings[course_option][class_option]["Days"]) == 1:
+                        if course_offerings[course_option][class_option]["Days"] in users[profile]["Enrolled"][schedule]["Days"]:
+                            return False
+                        else:
+                            return True
+                    elif (course_offerings[course_option][class_option]["Days"][0] not in users[profile]["Enrolled"][schedule]["Days"] )or (course_offerings[course_option][class_option]["Days"][2] not in users[profile]["Enrolled"][schedule]["Days"]):
+                        return True
+                    else:
+                        return False
+                else:
+                    return True
     else:
         return True
         

@@ -1,16 +1,16 @@
 from datetime import datetime
 
 users = {
-    "Aaron": {"Password": "pop", "Course": "CPE", "Address": "Manila", "ID Number": "05165164", "Enrolled":{} },
-    "Teo": {"Password": "123", "Course": "ECE", "Address": "Pasay", "ID Number": "05165165", "Enrolled":{}},
-    "Sammy": {"Password": "pass", "Course": "CCS", "Address": "Quezon City", "ID Number": "05165166", "Enrolled":{}}
+    "Aaron": {"Password": "pop", "Course": "CPE", "Address": "Manila", "ID Number": "05165164", "Enrolled": {}},
+    "Teo": {"Password": "123", "Course": "ECE", "Address": "Pasay", "ID Number": "05165165", "Enrolled": {}},
+    "Sammy": {"Password": "pass", "Course": "CCS", "Address": "Quezon City", "ID Number": "05165166", "Enrolled": {}}
 }
 
 course_offerings = {
     "CALENG2": {
         "527": {"Section": "ER1", "Days": "T/F", "Time": "07:30-09:00", "Room": "AG1606", "Remarks": "Hybrid",
                 "Teacher": "Balboa, Christian Jay P.", "Units": "7"},
-        "526": {"Section": "ER1", "Days": "T/F", "Time": "08:30-10:45", "Room": "AG1611", "Remarks": "Hybrid",
+        "526": {"Section": "ER1", "Days": "T/F", "Time": "09:15-10:45", "Room": "AG1611", "Remarks": "Hybrid",
                 "Teacher": "Balboa, Christian Jay P.", "Units": "7"},
     },
     "COEDISC": {
@@ -52,7 +52,7 @@ course_offerings = {
     "LBYPH1A": {
         "5080": {"Section": "ER2", "Days": "H", "Time": "11:00-14:00", "Room": "SJ410", "Remarks": "FACE TO FACE",
                  "Teacher": "BOLALIN, RAYMOND", "Units": "1"},
-        "2019": {"Section": "ER3", "Days": "F", "Time": "07:30-10:30", "Room": "SJ410", "Remarks": "FACE TO FACE",
+        "2019": {"Section": "ER3", "Days": "F", "Time": "7:30-10:30", "Room": "SJ410", "Remarks": "FACE TO FACE",
                  "Teacher": "BOLALIN, RAYMOND.", "Units": "1"},
     },
     "LBYCPEI": {
@@ -64,54 +64,62 @@ course_offerings = {
     "LBYEC2M": {
         "2033": {"Section": "EG5", "Days": "T", "Time": "16:15-19:15", "Room": "SM402A", "Remarks": "FACE TO FACE",
                  "Teacher": "ROCES, SUSAN", "Units": "1"},
-        "2019": {"Section": "EG3", "Days": "W", "Time": "11:00-04:00", "Room": "SM402A", "Remarks": "FACE TO FACE",
+        "2019": {"Section": "EG3", "Days": "W", "Time": "11:00-4:00", "Room": "SM402A", "Remarks": "FACE TO FACE",
                  "Teacher": "ROCES, SUSAN", "Units": "1"},
 
     }
 }
 
 store_pub = []
+tuition_store = []  # classs number
+tuition_subject = []  # class subjects
+total = []
+
 def classes(profile):
     print("""\n=====Course Offerings=====\nCALENG2\nCOEDISC\nGEMATMW\nENGPHYS\nGEFTWEL\nLCFAITH\nLCLSTWO\nLBYPH1A\nLBYCPEI\nLBYEC2M\n[Q]Exit""")
     course_option = ""
     while course_option not in course_offerings:
-        if course_option == "Q": # Q to exit from the course options
+        if course_option == "Q":  # Q to exit from the course options
             return "0"
         course_option = input("Choose a course (Ex. CALENG2): ")
+        tuition_subject.append(course_option)
 
         print("""\n=====Select Schedule=====""")
-        for i in course_offerings[course_option]: # the section from the subject
+        for i in course_offerings[course_option]:  # gets the section from the subject
             pub = i
             print(40 * "=")
             print("Class number" + ":" + i)
-            for sub in course_offerings[course_option][pub]: # displays the details of the subject
+            for sub in course_offerings[course_option][pub]:  # displays the details of the subject
                 print(sub + ": " + course_offerings[course_option][pub][sub])
         class_option = input("Choose [Class number]: ")
-
+        tuition_store.append(class_option)
         if class_option in course_offerings[course_option]:
-            if (check_schedule(profile,class_option, course_option) == True): 
+            if (check_schedule(profile, class_option, course_option) == True):
                 x = course_offerings[course_option][class_option]["Units"]
                 users[profile]["Enrolled"][class_option] = course_offerings[course_option][class_option]
                 store_pub.append((int(x)))
                 if int(sum(store_pub)) < 12:
-                    print("Warning: You can't add more than 12")
+
+                    print("Successfully added!!")
+                    print("Total Units: " + str(sum(store_pub)))
                     return "Q"
                 else:
-                    print("Successfully added!!")
+                    store_pub.pop(-1)
+                    print("Warning: You can't add more than 12")
                     print("Total Units: " + str(sum(store_pub)))
                     return "Q"
             else:
                 print("Schedule Conflict")
-                
-            
-#Problems: looks ugly
+
+
+# Problems: looks ugly
 def calendar(profile):
-    days_week = [[],[],[],[],[]]
+    days_week = [[], [], [], [], []]
     for calendar_schedule in users[profile]["Enrolled"]:
         if "M" in users[profile]["Enrolled"][calendar_schedule]["Days"]:
             days_week[0].append(calendar_schedule + ": " + users[profile]["Enrolled"][calendar_schedule]["Time"] + "\n")
         if "T" in users[profile]["Enrolled"][calendar_schedule]["Days"]:
-            days_week[1].append(calendar_schedule + ": " + users[profile]["Enrolled"][calendar_schedule]["Time"] + "\n") 
+            days_week[1].append(calendar_schedule + ": " + users[profile]["Enrolled"][calendar_schedule]["Time"] + "\n")
         if "W" in users[profile]["Enrolled"][calendar_schedule]["Days"]:
             days_week[2].append(calendar_schedule + ": " + users[profile]["Enrolled"][calendar_schedule]["Time"] + "\n")
         if "H" in users[profile]["Enrolled"][calendar_schedule]["Days"]:
@@ -122,21 +130,21 @@ def calendar(profile):
         n = len(day)
         for i in range(n):
             swapped = False
-            for j in range(0,n-i-1):
+            for j in range(0, n - i - 1):
                 Ostart = 6
                 Tstart = 6
-                Oend=11
+                Oend = 11
                 Tend = 11
-                if len(day[j]) <18:
-                    Ostart -=1
-                    Oend -=1
-                if len(day[j+1]) <18:
-                    Tstart-=1
-                    Tend -=1
+                if len(day[j]) < 18:
+                    Ostart -= 1
+                    Oend -= 1
+                if len(day[j + 1]) < 18:
+                    Tstart -= 1
+                    Tend -= 1
                 comp1 = datetime.strptime(day[j][Ostart:Oend], '%H:%M')
-                comp2 = datetime.strptime(day[j+1][Tstart:Tend], '%H:%M')
+                comp2 = datetime.strptime(day[j + 1][Tstart:Tend], '%H:%M')
                 if comp1 > comp2:
-                    day[j], day[j+1] = day[j+1], day[j]
+                    day[j], day[j + 1] = day[j + 1], day[j]
                     swapped = True
             if (swapped == False):
                 break
@@ -157,35 +165,49 @@ def calendar(profile):
     for i in days_week[4]:
         print(i)
 
-    
+
+# Problems: schedule conflict is not working properly properly
 def check_schedule(profile, class_option, course_option):
     if len(users[profile]["Enrolled"]) != 0:
-            for schedule in users[profile]["Enrolled"]:
-                if (datetime.strptime(course_offerings[course_option][class_option]["Time"][0:5], '%H:%M') >= datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][0:5], '%H:%M')) and (datetime.strptime(course_offerings[course_option][class_option]["Time"][0:5],'%H:%M') <= datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][6:10], '%H:%M')):
-                    if len(course_offerings[course_option][class_option]["Days"]) == 1:
-                        if course_offerings[course_option][class_option]["Days"] in users[profile]["Enrolled"][schedule]["Days"]:
-                            return False
-                        else:
-                            return True
-                    elif (course_offerings[course_option][class_option]["Days"][0] not in users[profile]["Enrolled"][schedule]["Days"] )or (course_offerings[course_option][class_option]["Days"][2] not in users[profile]["Enrolled"][schedule]["Days"]):
-                        return True
-                    else:
+        for schedule in users[profile]["Enrolled"]:
+            if datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][0:5], '%H:%M') <= datetime.strptime(
+                    course_offerings[course_option][class_option]["Time"][0:5], '%H:%M') and datetime.strptime(
+                    users[profile]["Enrolled"][schedule]["Time"][6:10], '%H:%M') >= datetime.strptime(
+                    course_offerings[course_option][class_option]["Time"][0:5], '%H:%M'):
+                if len(course_offerings[course_option][class_option]["Days"]) == 1:
+                    if course_offerings[course_option][class_option]["Days"] in users[profile]["Enrolled"][schedule][
+                        "Days"]:
                         return False
-                elif (datetime.strptime(course_offerings[course_option][class_option]["Time"][6:10], '%H:%M') >= datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][0:5], '%H:%M')) and (datetime.strptime(course_offerings[course_option][class_option]["Time"][6:10],'%H:%M') <= datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][6:10], '%H:%M')):
-                    if len(course_offerings[course_option][class_option]["Days"]) == 1:
-                        if course_offerings[course_option][class_option]["Days"] in users[profile]["Enrolled"][schedule]["Days"]:
-                            return False
-                        else:
-                            return True
-                    elif (course_offerings[course_option][class_option]["Days"][0] not in users[profile]["Enrolled"][schedule]["Days"] )or (course_offerings[course_option][class_option]["Days"][2] not in users[profile]["Enrolled"][schedule]["Days"]):
-                        return True
                     else:
-                        return False
-                else:
+                        return True
+                elif (course_offerings[course_option][class_option]["Days"][0] not in
+                      users[profile]["Enrolled"][schedule]["Days"]) or (
+                        course_offerings[course_option][class_option]["Days"][2] not in
+                        users[profile]["Enrolled"][schedule]["Days"]):
                     return True
+                else:
+                    return False
+            elif datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][0:5], '%H:%M') <= datetime.strptime(
+                    course_offerings[course_option][class_option]["Time"][6:10], '%H:%M') and datetime.strptime(
+                    users[profile]["Enrolled"][schedule]["Time"][6:10], '%H:%M') >= datetime.strptime(
+                    course_offerings[course_option][class_option]["Time"][6:10], '%H:%M'):
+                if len(course_offerings[course_option][class_option]["Days"]) == 1:
+                    if course_offerings[course_option][class_option]["Days"] in users[profile]["Enrolled"][schedule][
+                        "Days"]:
+                        return False
+                    else:
+                        return True
+                elif (course_offerings[course_option][class_option]["Days"][0] not in
+                      users[profile]["Enrolled"][schedule]["Days"]) or (
+                        course_offerings[course_option][class_option]["Days"][2] not in
+                        users[profile]["Enrolled"][schedule]["Days"]):
+                    return True
+                else:
+                    return False
+            else:
+                return True
     else:
         return True
-        
 
 
 def check_name(validation):
@@ -212,20 +234,52 @@ def login(username, password):
             password_login = input("Password: ")
             login(username_login, password_login)
 
+def tuition_fees():
+    subject = []
+    class_sub = []
+    for get_subject in tuition_subject:
+        subject = get_subject
+    for class_number in tuition_store:
+        class_sub = class_number
+
+    lab_sched = ["LBYCPEI", "LBYEC2M", "LBYPH1A" ]
+    Miscellaneous = 813.00
+    ID_Validation = 46.00
+    Lab_unit = 2500.00
+    Lec_unit = 1500.50
+    if sum(store_pub) < 6:
+        print("Total units must be > 6 and < 12")
+    else:
+        for value in tuition_subject:
+            subject = value
+        if subject in lab_sched:
+            for price1 in course_offerings[subject][class_sub]["Units"]:
+                total.append(float(price1) * Lab_unit)
+        else:
+            for price2 in course_offerings[subject][class_sub]["Units"]:
+                total.append(float(price2) * Lec_unit)
+        total_fees = sum(total) + Miscellaneous + ID_Validation
+        print(f"""======Assessment======\nFees: {sum(total)}\nMiscellaneous: {Miscellaneous}\nID_validation: {ID_Validation}
+Total Fees: {total_fees}""")
+
+
+
 
 def main_page(profile):
     option2 = ""
-    while option2 != "3":
+    while option2 != "4":
         if option2 == "1":
             option2 = classes(profile)
         elif option2 == "2":
             option2 = calendar(profile)
+        elif option2 == "3":
+            option2 = tuition_fees()
         else:
             print("""====Academic Profile====""")
             for info in users[profile]:
-                if info != "Password" and info !="Enrolled":
+                if info != "Password" and info != "Enrolled":
                     print(info + ": " + users[profile][info])
-            print("""=====Main Page=====\n[1] Select Course\n[2] My Calendar\n[3] Exit\n===================""")
+            print("""=====Main Page=====\n[1] Select Course\n[2] My Calendar\n[3] Tuition Fees\n[4] Exit\n===================""")
             option2 = input("Choose option: ")
 
 

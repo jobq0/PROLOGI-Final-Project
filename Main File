@@ -52,7 +52,7 @@ course_offerings = {
     "LBYPH1A": {
         "5080": {"Section": "ER2", "Days": "H", "Time": "11:00-14:00", "Room": "SJ410", "Remarks": "FACE TO FACE",
                  "Teacher": "BOLALIN, RAYMOND", "Units": "1"},
-        "2019": {"Section": "ER3", "Days": "F", "Time": "7:30-10:30", "Room": "SJ410", "Remarks": "FACE TO FACE",
+        "2019": {"Section": "ER3", "Days": "F", "Time": "07:30-10:30", "Room": "SJ410", "Remarks": "FACE TO FACE",
                  "Teacher": "BOLALIN, RAYMOND.", "Units": "1"},
     },
     "LBYCPEI": {
@@ -112,7 +112,6 @@ def classes(profile):
                 print("Schedule Conflict")
 
 
-# Problems: looks ugly
 def calendar(profile):
     days_week = [[], [], [], [], []]
     for calendar_schedule in users[profile]["Enrolled"]:
@@ -166,31 +165,10 @@ def calendar(profile):
         print(i)
 
 
-# Problems: schedule conflict is not working properly properly
 def check_schedule(profile, class_option, course_option):
     if len(users[profile]["Enrolled"]) != 0:
         for schedule in users[profile]["Enrolled"]:
-            if datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][0:5], '%H:%M') <= datetime.strptime(
-                    course_offerings[course_option][class_option]["Time"][0:5], '%H:%M') and datetime.strptime(
-                    users[profile]["Enrolled"][schedule]["Time"][6:10], '%H:%M') >= datetime.strptime(
-                    course_offerings[course_option][class_option]["Time"][0:5], '%H:%M'):
-                if len(course_offerings[course_option][class_option]["Days"]) == 1:
-                    if course_offerings[course_option][class_option]["Days"] in users[profile]["Enrolled"][schedule][
-                        "Days"]:
-                        return False
-                    else:
-                        return True
-                elif (course_offerings[course_option][class_option]["Days"][0] not in
-                      users[profile]["Enrolled"][schedule]["Days"]) or (
-                        course_offerings[course_option][class_option]["Days"][2] not in
-                        users[profile]["Enrolled"][schedule]["Days"]):
-                    return True
-                else:
-                    return False
-            elif datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][0:5], '%H:%M') <= datetime.strptime(
-                    course_offerings[course_option][class_option]["Time"][6:10], '%H:%M') and datetime.strptime(
-                    users[profile]["Enrolled"][schedule]["Time"][6:10], '%H:%M') >= datetime.strptime(
-                    course_offerings[course_option][class_option]["Time"][6:10], '%H:%M'):
+            if ((datetime.strptime(course_offerings[course_option][class_option]["Time"][0:5], '%H:%M') >= datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][0:5], '%H:%M')) and (datetime.strptime(course_offerings[course_option][class_option]["Time"][0:5], '%H:%M') <= datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][6:10], '%H:%M'))) or ((datetime.strptime(course_offerings[course_option][class_option]["Time"][6:10], '%H:%M') >= datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][0:5], '%H:%M')) and (datetime.strptime(course_offerings[course_option][class_option]["Time"][6:10], '%H:%M') <= datetime.strptime(users[profile]["Enrolled"][schedule]["Time"][6:10], '%H:%M'))):
                 if len(course_offerings[course_option][class_option]["Days"]) == 1:
                     if course_offerings[course_option][class_option]["Days"] in users[profile]["Enrolled"][schedule][
                         "Days"]:

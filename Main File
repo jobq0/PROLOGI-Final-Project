@@ -9,9 +9,9 @@ users = {
 course_offerings = {
     "CALENG2": {
         "527": {"Section": "ER1", "Days": "T/F", "Time": "07:30-09:00", "Room": "AG1606", "Remarks": "Hybrid",
-                "Teacher": "Balboa, Christian Jay P.", "Units": "7"},
+                "Teacher": "Balboa, Christian Jay P.", "Units": "3"},
         "526": {"Section": "ER1", "Days": "T/F", "Time": "09:15-10:45", "Room": "AG1611", "Remarks": "Hybrid",
-                "Teacher": "Balboa, Christian Jay P.", "Units": "7"},
+                "Teacher": "Balboa, Christian Jay P.", "Units": "3"},
     },
     "COEDISC": {
         "1184": {"Section": "EQ2", "Days": "M", "Time": "15:45-16:45", "Room": "VL204", "Remarks": "Hybrid",
@@ -84,32 +84,31 @@ def classes(profile):
         course_option = input("Choose a course (Ex. CALENG2): ")
         tuition_subject.append(course_option)
 
-        print("""\n=====Select Schedule=====""")
-        for i in course_offerings[course_option]:  # gets the section from the subject
-            pub = i
-            print(40 * "=")
-            print("Class number" + ":" + i)
-            for sub in course_offerings[course_option][pub]:  # displays the details of the subject
-                print(sub + ": " + course_offerings[course_option][pub][sub])
-        class_option = input("Choose [Class number]: ")
-        tuition_store.append(class_option)
-        if class_option in course_offerings[course_option]:
-            if (check_schedule(profile, class_option, course_option) == True):
-                x = course_offerings[course_option][class_option]["Units"]
-                users[profile]["Enrolled"][class_option] = course_offerings[course_option][class_option]
-                store_pub.append((int(x)))
-                if int(sum(store_pub)) < 12:
-
-                    print("Successfully added!!")
-                    print("Total Units: " + str(sum(store_pub)))
-                    return "Q"
-                else:
-                    store_pub.pop(-1)
-                    print("Warning: You can't add more than 12")
-                    print("Total Units: " + str(sum(store_pub)))
-                    return "Q"
+    print("""\n=====Select Schedule=====""")
+    for i in course_offerings[course_option]:  # gets the section from the subject
+        pub = i
+        print(40 * "=")
+        print("Class number" + ":" + i)
+        for sub in course_offerings[course_option][pub]:  # displays the details of the subject
+            print(sub + ": " + course_offerings[course_option][pub][sub])
+    class_option = input("Choose [Class number]: ")
+    tuition_store.append(class_option)
+    if class_option in course_offerings[course_option]:
+        if (check_schedule(profile, class_option, course_option) == True):
+            x = course_offerings[course_option][class_option]["Units"]
+            users[profile]["Enrolled"][class_option] = course_offerings[course_option][class_option]
+            store_pub.append((int(x)))
+            if int(sum(store_pub)) < 12:
+                print("Successfully added!!")
+                print("Total Units: " + str(sum(store_pub)))
+                return "Q"
             else:
-                print("Schedule Conflict")
+                store_pub.pop(-1)
+                print("Warning: You can't add more than 12")
+                print("Total Units: " + str(sum(store_pub)))
+                return "Q"
+        else:
+            print("Schedule Conflict")
 
 
 def calendar(profile):
